@@ -1,0 +1,3 @@
+1. Execute o arquivo main.sql em seu banco de dados MySQL
+2. Configure a conexão nas transformações
+3. Rode o job
