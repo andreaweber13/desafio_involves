@@ -1,3 +1,4 @@
+create database pontos_de_vendas;
 use pontos_de_vendas;
 CREATE TABLE DIM_CALENDARIO (
     DATA DATE PRIMARY KEY,
