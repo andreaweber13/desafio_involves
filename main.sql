@@ -1,8 +1,4 @@
-create database pontos_de_vendas;
 use pontos_de_vendas;
-
-
-
 CREATE TABLE DIM_CALENDARIO (
     DATA DATE PRIMARY KEY,
     MES INT,
@@ -18,27 +14,28 @@ CREATE TABLE DIM_LINHA_PRODUTO (
     NOME_LINHA_PRODUTO VARCHAR(255),
     MARCA_LINHA_PRODUTO VARCHAR(100)
 );
+
 CREATE TABLE FT_DISPONIBILIDADE (
-    DATA DATE,
-    ID_PONTO_VENDA INT,
-    ID_LINHA_PRODUTO INT,
+    DATA DATE references DIM_CALENDARIO(DATA),
+    ID_PONTO_VENDA INT references DIM_PDV(ID_PONTO_VENDA), 
+    ID_LINHA_PRODUTO INT references DIM_LINHA_PRODUTO(ID_LINHA_PRODUTO),
     QTD_PRESENCA_SET bigint unsigned
 );
 CREATE TABLE FT_DISPONIBILIDADE_AGRUPADA (
-    DATA DATE,
-    ID_PONTO_VENDA INT,
+	DATA DATE references DIM_CALENDARIO(DATA),
+    ID_PONTO_VENDA INT references DIM_PDV(ID_PONTO_VENDA), 
     QTD_PRESENCA_SET bigint unsigned
 );
 
 CREATE TABLE FT_PONTO_EXTRA (
-    DATA DATE,
-    ID_PONTO_VENDA INT,
-    ID_LINHA_PRODUTO INT,
+    DATA DATE references DIM_CALENDARIO(DATA),
+    ID_PONTO_VENDA INT references DIM_PDV(ID_PONTO_VENDA), 
+    ID_LINHA_PRODUTO INT references DIM_LINHA_PRODUTO(ID_LINHA_PRODUTO),
     SOMA_PONTO_EXTRA bigint unsigned
 );
 CREATE TABLE FT_PONTO_EXTRA_AGRUPADA (
-    DATA DATE,
-    ID_PONTO_VENDA INT,
+    DATA DATE references DIM_CALENDARIO(DATA),
+    ID_PONTO_VENDA INT references DIM_PDV(ID_PONTO_VENDA), 
     SOMA_PONTO_EXTRA bigint unsigned
 );
 
@@ -57,5 +54,3 @@ select * from FT_DISPONIBILIDADE;
 select * from ft_disponibilidade_agrupada;
 select * from ft_ponto_extra;
 select * from ft_ponto_extra_agrupada;
-
-
